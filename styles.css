@@ -1,0 +1,24 @@
+                body {
+                    background-color: darkcyan;
+                }
+                
+                header {
+                    background-color: whitesmoke;
+                    color: crimson;
+                    padding: 10px;
+                    margin: 10px;
+                }
+                
+                main {
+                    background-color: lightblue;
+                    padding: 10px;
+                    margin: 200px;
+                    text-align: center;
+                    border: 1px;
+                }
+                
+                footer {
+                    background-color: orangered;
+                    color: aliceblue;
+                    text-align: center;
+                }

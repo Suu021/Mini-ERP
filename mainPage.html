@@ -6,32 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini-ERP Home</title>
-    <style>
-        body {
-            background-color: darkcyan;
-        }
-        
-        header {
-            background-color: whitesmoke;
-            color: crimson;
-            padding: 10px;
-            margin: 10px;
-        }
-        
-        main {
-            background-color: lightblue;
-            padding: 10px;
-            margin: 250px;
-            text-align: center;
-            border: 1px;
-        }
-        
-        footer {
-            background-color: orangered;
-            color: aliceblue;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -41,15 +16,16 @@
     <main>
         <section id="boxlogin">
             <form action="get">
-                <label for="usuario">Usuário  </label><input type="text" name="usuariotxt" id="">
-                <br><label for="senha">Senha  </label><input type="password" name="passwtxt" id="">
-                <br><input type="submit" value="Acessar">
-                <br><button>Novo Cadastro</button>
+                <label for="usuario">Username:  </label><input type="text" name="usuariotxt" id="">
+                <br><label for="senha">Password:  </label><input type="password" name="passwtxt" id="">
+                <br><input type="submit" value="Sign in">
             </form>
+            <br>
+            <button onclick="window.location.href = 'signUp.html'">Sign up</button>
         </section>
     </main>
     <footer>
-        <p>Desenvolvido por Suu Kirinus Nogueira</p>
+        <p>Developed by Suu Kirinus Nogueira</p>
     </footer>
 </body>
 
