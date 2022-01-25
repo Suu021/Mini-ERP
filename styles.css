@@ -1,24 +1,46 @@
-                body {
-                    background-color: darkcyan;
-                }
-                
-                header {
-                    background-color: whitesmoke;
-                    color: crimson;
-                    padding: 10px;
-                    margin: 10px;
-                }
-                
-                main {
-                    background-color: lightblue;
-                    padding: 10px;
-                    margin: 200px;
-                    text-align: center;
-                    border: 1px;
-                }
-                
-                footer {
-                    background-color: orangered;
-                    color: aliceblue;
-                    text-align: center;
-                }
+body {
+    background-color: darkcyan;
+}
+
+header {
+    background-color: whitesmoke;
+    color: crimson;
+    padding: 10px;
+    margin: 10px;
+}
+
+main {
+    background-color: lightblue;
+    padding: 10px;
+    margin: 200px;
+    text-align: center;
+    border: 1px;
+}
+
+footer {
+    background-color: orangered;
+    color: aliceblue;
+    text-align: center;
+}
+
+.notification.is-success {
+    background-color: deepskyblue;
+    height: 30px;
+    width: 350px;
+    text-align: center;
+    color: aliceblue;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+.notification.is-info {
+    height: 30px;
+    width: 350px;
+    background-color: rgb(199, 53, 8);
+    text-align: center;
+    color: aliceblue;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+#message {}

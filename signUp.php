@@ -1,33 +1,52 @@
 <?php
-$login = $_POST["usernametxt"];
-$password = MD5($_POST["passwtxt"]);
-$password2 = MD5($_POST["passw2txt"]);
+session_start();
+include("connection.php");
 
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$connect = mysqli_connect("localhost","root","");
-$db = mysqli_select_db($connect, 'mini-erp');
-$query_select = "SELECT login FROM users WHERE login = '$login'";
-$select = mysqli_query($connect, $query_select);
-$array = mysqli_fetch_array($select);
-$logarray = $array['login'];
+$bname = mysqli_real_escape_string($connect, trim($_POST["Bnametxt"]));
+$username = mysqli_real_escape_string($connect, trim($_POST["usernametxt"]));
+$password = mysqli_real_escape_string($connect, trim(MD5($_POST["passwtxt"])));
+$password2 = mysqli_real_escape_string($connect, trim(MD5($_POST["passw2txt"])));
 
-if ($login == "" || $login == null){
-    echo"<script language='javascript' type='text/javascript'>alert('The login field must be filled');window.location.href='signUp.html';</script>";
-}else{
-    if ($logarray == $login){
-        echo"<script language='javascript' type='text/javascript'>alert('This username already exists');window.location.href='signUp.html';</script>";
-    }else if ($password != $password2){
-        echo"<script language='javascript' type='text/javascript'>alert('The password wasn't confirmed');window.location.href='signUP.html';</script>";
-    } 
-    else{
-        $query = "INSERT INTO users (login, password) VALUES ('$login', '$password')";
-        $insert = mysqli_query($connect, $query);
-
-        if($insert){
-            echo"<script language='javascript' type='text/javascript'>alert('Successfully registered user!');window.location.href='signUp.html';</script>";
-        }else{
-            echo"<script language='javascript' type='text/javascript'>alert('It was not possible to register this user.');window.location.href='signUp.html';</script>";
-        }
-    }
+if ($password != $password2){
+    $_SESSION['different_password'] = true;
+    header("location: toSignUp.php");
+    exit;
 }
+
+$query_select = "SELECT count(*) AS total FROM users WHERE username = '$username'";
+$select = mysqli_query($connect, $query_select);
+$row  = mysqli_fetch_assoc($select);
+
+if ($row['total'] == 1){
+    $_SESSION['user_exists'] = true;
+    header("location: toSignUp.php");
+    exit;
+}
+
+$query_select = "INSERT INTO users (username, business_name, password) VALUES ('$username', '$bname', '$password')";
+
+if ($connect -> query($query_select) === true){
+    $_SESSION['signup_status'] = true;
+}
+
+$connect -> close();
+
+header('location: toSignUp.php');
+exit;
+/*$array = mysqli_fetch_array($select);
+$logarray = $array['username'];
+
+if ($password != $password2){
+    echo"<script language='javascript' type='text/javascript'>alert('The password wasn't confirmed');window.location.href='signUP.html';</script>";
+} 
+else{
+    $query = "INSERT INTO users (username, business_name, password) VALUES ('$username', '$bname', '$password')";
+    $insert = mysqli_query($connect, $query);
+
+    if($insert){
+        echo"<script language='javascript' type='text/javascript'>alert('Successfully registered user!');window.location.href='signUp.html';</script>";
+    }else{
+        echo"<script language='javascript' type='text/javascript'>alert('It was not possible to register this user.');window.location.href='signUp.html';</script>";
+    }*/
 ?>
+  
